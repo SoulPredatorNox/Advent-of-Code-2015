@@ -33,57 +33,58 @@ public class Day2 {
         Scanner in = new Scanner(new FileReader("input/Day2"));
 
         int result = 0;
-        int ribbonlength=0;
+        int ribbonlength = 0;
 
         while (in.hasNext()) {
             int l = 0;
             int w = 0;
             int h = 0;
             int posofx = 0;
-            int minnum=0;
+            int minnum = 0;
 
             String s = in.next();
 
             for (int i = 0; i < s.length(); i++) {
                 if (s.charAt(i) == 'x') {
-                    posofx = i+1;
+                    posofx = i + 1;
                     break;
                 }
-                l*=10;
+                l *= 10;
                 l += Character.getNumericValue(s.charAt(i));
 
             }
             for (int i = posofx; i < s.length(); i++) {
                 if (s.charAt(i) == 'x') {
-                    posofx = i+1;
+                    posofx = i + 1;
                     break;
                 }
-                w*=10;
+                w *= 10;
                 w += Character.getNumericValue(s.charAt(i));
             }
             for (int i = posofx; i < s.length(); i++) {
                 if (s.charAt(i) == 'x') {
-                    posofx = i+1;
-                break;
+                    posofx = i + 1;
+                    break;
                 }
-                h*=10;
+                h *= 10;
                 h += Character.getNumericValue(s.charAt(i));
             }
-            if (l * w<w * h){
-                minnum=l * w;
-            } else minnum = w*h;
+            if (l * w < w * h) {
+                minnum = l * w;
+            } else minnum = w * h;
 
-            minnum=Integer.min(minnum,h*l);
-            result += 2 * l * w + 2 * w * h + 2 * h * l+ minnum;
+            minnum = Integer.min(minnum, h * l);
+            result += 2 * l * w + 2 * w * h + 2 * h * l + minnum;
 
             //part 2
-            int[] minside= new int[]{l,w,h};
+            int[] minside = new int[]{l, w, h};
             Arrays.sort(minside);
-            ribbonlength += minside[0]*2+minside[1]*2+l*w*h;
+            ribbonlength += minside[0] * 2 + minside[1] * 2 + l * w * h;
 
-            System.out.println(result);
-            System.out.println(ribbonlength);
+
         }
+        System.out.println("Part1: "+result);
+        System.out.println("Part2: "+ribbonlength);
     }
 }
 
