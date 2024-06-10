@@ -24,6 +24,7 @@ How many total feet of ribbon should they order?
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Day2 {
@@ -32,6 +33,7 @@ public class Day2 {
         Scanner in = new Scanner(new FileReader("input/Day2"));
 
         int result = 0;
+        int ribbonlength=0;
 
         while (in.hasNext()) {
             int l = 0;
@@ -39,6 +41,7 @@ public class Day2 {
             int h = 0;
             int posofx = 0;
             int minnum=0;
+
             String s = in.next();
 
             for (int i = 0; i < s.length(); i++) {
@@ -73,7 +76,13 @@ public class Day2 {
             minnum=Integer.min(minnum,h*l);
             result += 2 * l * w + 2 * w * h + 2 * h * l+ minnum;
 
+            //part 2
+            int[] minside= new int[]{l,w,h};
+            Arrays.sort(minside);
+            ribbonlength += minside[0]*2+minside[1]*2+l*w*h;
+
             System.out.println(result);
+            System.out.println(ribbonlength);
         }
     }
 }
