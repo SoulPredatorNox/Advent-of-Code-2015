@@ -11,6 +11,22 @@ For example:
 > delivers presents to 2 houses: one at the starting location, and one to the east.
 ^>v< delivers presents to 4 houses in a square, including twice to the house at his starting/ending location.
 ^v^v^v^v^v delivers a bunch of presents to some very lucky children at only 2 houses.
+
+--- Part Two ---
+The next year, to speed up the process, Santa creates a robot version of himself, Robo-Santa, to deliver presents with him.
+
+Santa and Robo-Santa start at the same location (delivering two presents to the same starting house), then take turns moving based on instructions from the elf, who is eggnoggedly reading from the same script as the previous year.
+
+This year, how many houses receive at least one present?
+
+For example:
+
+^v delivers presents to 3 houses, because Santa goes north, and then Robo-Santa goes south.
+^>v< now delivers presents to 3 houses, and Santa and Robo-Santa end up back where they started.
+^v^v^v^v^v now delivers presents to 11 houses, with Santa going one direction and Robo-Santa going the other.
+
+Dev: Petar Wiener
+10.06.2024
  */
 
 
@@ -31,37 +47,73 @@ public class Day3 {
         savedata[s.length()][s.length()] = 1;
         int i = s.length();
         int j = s.length();
+        int robx = s.length();
+        int roby = s.length();
 
         while (cnt != s.length() - 1) {
-            if (s.charAt(cnt) == '<') {
-                i--;
-                savedata[i][j]++;
-                if (savedata[i][j] == 1) {
-                    housestotal++;
-                }
-            } else if (s.charAt(cnt) == '^') {
-                j--;
-                savedata[i][j]++;
-                if (savedata[i][j] == 1) {
-                    housestotal++;
-                }
-            } else if (s.charAt(cnt) == 'v') {
-                j++;
-                savedata[i][j]++;
-                if (savedata[i][j] == 1) {
-                    housestotal++;
-                }
+            if (cnt % 2 == 0) {
+                if (s.charAt(cnt) == '<') {
+                    i--;
+                    savedata[i][j]++;
+                    if (savedata[i][j] == 1) {
+                        housestotal++;
+                    }
+                } else if (s.charAt(cnt) == '^') {
+                    j--;
+                    savedata[i][j]++;
+                    if (savedata[i][j] == 1) {
+                        housestotal++;
+                    }
+                } else if (s.charAt(cnt) == 'v') {
+                    j++;
+                    savedata[i][j]++;
+                    if (savedata[i][j] == 1) {
+                        housestotal++;
+                    }
 
-            } else if (s.charAt(cnt) == '>') {
-                i++;
-                savedata[i][j]++;
-                if (savedata[i][j] == 1) {
-                    housestotal++;
+                } else if (s.charAt(cnt) == '>') {
+                    i++;
+                    savedata[i][j]++;
+                    if (savedata[i][j] == 1) {
+                        housestotal++;
+                    }
                 }
+                cnt++;
+            } else {
+                if (s.charAt(cnt) == '<') {
+                    robx--;
+                    savedata[robx][roby]++;
+                    if (savedata[robx][roby] == 1) {
+                        housestotal++;
+                    }
+                } else if (s.charAt(cnt) == '^') {
+                    roby--;
+                    savedata[robx][roby]++;
+                    if (savedata[robx][roby] == 1) {
+                        housestotal++;
+                    }
+                } else if (s.charAt(cnt) == 'v') {
+                    roby++;
+                    savedata[robx][roby]++;
+                    if (savedata[robx][roby] == 1) {
+                        housestotal++;
+                    }
+
+                } else if (s.charAt(cnt) == '>') {
+                    robx++;
+                    savedata[robx][roby]++;
+                    if (savedata[robx][roby] == 1) {
+                        housestotal++;
+                    }
+                }
+                cnt++;
             }
-            cnt++;
         }
         System.out.println(housestotal);
     }
 }
+
+
+
+
 
