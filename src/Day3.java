@@ -26,68 +26,42 @@ public class Day3 {
 
         int housestotal = 1;
 
-        int north = 0;
-        int south = 0;
-        int east = 0;
-        int west = 0;
-
-        for (int i = 0; i < s.length(); i++) {
-
-            if (s.charAt(i) == '^') {
-                north++;
-            } else if (s.charAt(i) == 'v') {
-                south++;
-            } else if (s.charAt(i) == '<') {
-                west++;
-            } else if (s.charAt(i) == '>') {
-                east++;
-            }
-        }
-
-        int[][] savedata = new int[(north + south) * 2][(east + west) * 2];
+        int[][] savedata = new int[(s.length()) * 2][(s.length()) * 2];
         int cnt = 0;
-        savedata[west][north] = 1;
+        savedata[s.length()][s.length()] = 1;
+        int i = s.length();
+        int j = s.length();
 
-        for (int i = west; i < s.length(); ) {
-            for (int j = north; j < s.length(); ) {
-
-                if (s.charAt(cnt) == '<') {
-                    i--;
-                    savedata[i][j]++;
-                    if (savedata[i][j] == 1) {
-                        housestotal++;
-                    }
-                } else if (s.charAt(cnt) == '^') {
-                    j--;
-                    savedata[i][j]++;
-                    if (savedata[i][j] == 1) {
-                        housestotal++;
-                    }
-                } else if (s.charAt(cnt) == 'v') {
-                    j++;
-                    savedata[i][j]++;
-                    if (savedata[i][j] == 1) {
-                        housestotal++;
-                    }
-
-                } else if (s.charAt(cnt) == '>') {
-                    i++;
-                    savedata[i][j]++;
-                    if (savedata[i][j] == 1) {
-                        housestotal++;
-                    }
+        while (cnt != s.length() - 1) {
+            if (s.charAt(cnt) == '<') {
+                i--;
+                savedata[i][j]++;
+                if (savedata[i][j] == 1) {
+                    housestotal++;
                 }
-                if (cnt == s.length() - 1) {
-                    break;
+            } else if (s.charAt(cnt) == '^') {
+                j--;
+                savedata[i][j]++;
+                if (savedata[i][j] == 1) {
+                    housestotal++;
                 }
-                cnt++;
+            } else if (s.charAt(cnt) == 'v') {
+                j++;
+                savedata[i][j]++;
+                if (savedata[i][j] == 1) {
+                    housestotal++;
+                }
+
+            } else if (s.charAt(cnt) == '>') {
+                i++;
+                savedata[i][j]++;
+                if (savedata[i][j] == 1) {
+                    housestotal++;
+                }
             }
+            cnt++;
         }
-
         System.out.println(housestotal);
-        System.out.println(north);
-        System.out.println(east);
-        System.out.println(west);
-        System.out.println(south);
     }
 }
+
