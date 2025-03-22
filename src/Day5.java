@@ -37,6 +37,7 @@ How many strings are nice under these new rules?
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.HashMap;
 import java.util.Scanner;
 
 
@@ -70,19 +71,49 @@ public class Day5 {
         return s.contains("ab") || s.contains("cd") || s.contains("pq") || s.contains("xy");
     }
 
+    public static boolean hasDoublebreakLetter(String s) {
+        for (int i = 0; i < s.length() - 2; i++) {
+            if (s.charAt(i) == s.charAt(i + 2)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean twice_two_letters(String s) {
+        HashMap<String, Integer> seenPairs = new HashMap<>();
+
+        for (int i = 0; i < s.length() - 1; i++) {
+            String pair = s.substring(i, i + 2);
+
+            if (seenPairs.containsKey(pair) && seenPairs.get(pair) < i - 1) {
+                return true;
+            }
+            seenPairs.put(pair, i);
+        }
+        return false;
+    }
+
 
     public static void main(String[] args) throws FileNotFoundException {
 
         Scanner in = new Scanner(new FileReader("input/Day5"));
 
-        int nicecheck=0;
+        int nicecheckp1=0;
+        int nicecheckp2=0;
         while (in.hasNext()) {
             String s = in.next();
 
             if (hasThreeVowels(s) && hasDoubleLetter(s) && !containsForbiddenSubstrings(s)) {
-                nicecheck++;
+                nicecheckp1++;
             }
+            if (hasDoublebreakLetter(s) && twice_two_letters(s)) {
+                nicecheckp2++; //answer was 69 and not 68
+            }
+
         }
-        System.out.println(nicecheck);
+        in.close();
+        System.out.println(nicecheckp1);
+        System.out.println(nicecheckp2);
     }
 }
