@@ -15,7 +15,6 @@ If your secret key is pqrstuv, the lowest number it combines with to make an MD5
 
 */
 
-
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.math.BigInteger;
