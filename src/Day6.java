@@ -14,6 +14,26 @@ turn on 0,0 through 999,999 would turn on (or leave on) every light.
 toggle 0,0 through 999,0 would toggle the first line of 1000 lights, turning off the ones that were on, and turning on the ones that were off.
 turn off 499,499 through 500,500 would turn off (or leave off) the middle four lights.
 After following the instructions, how many lights are lit?
+
+--- Part Two ---
+
+You just finish implementing your winning light pattern when you realize you mistranslated Santa's message from Ancient Nordic Elvish.
+
+The light grid you bought actually has individual brightness controls; each light can have a brightness of zero or more. The lights all start at zero.
+
+The phrase turn on actually means that you should increase the brightness of those lights by 1.
+
+The phrase turn off actually means that you should decrease the brightness of those lights by 1, to a minimum of zero.
+
+The phrase toggle actually means that you should increase the brightness of those lights by 2.
+
+What is the total brightness of all lights combined after following Santa's instructions?
+
+For example:
+
+turn on 0,0 through 0,0 would increase the total brightness by 1.
+toggle 0,0 through 999,999 would increase the total brightness by 2000000.
+
 */
 
 import java.io.FileNotFoundException;
@@ -24,7 +44,7 @@ import java.util.Scanner;
 public class Day6 {
 
     static Scanner in;
-    static boolean [][]lightarray =new boolean[1000][1000];
+    static int [][]lightarray =new int[1000][1000];
 
 
     public static String command_handler() throws FileNotFoundException {
@@ -106,7 +126,7 @@ public class Day6 {
     public static void turn_on(int xl, int yl,int xu, int yu) {
         for (int i = xl; i <= xu; i++) {
             for (int j = yl; j <= yu; j++) {
-                lightarray[i][j]=true;
+                lightarray[i][j]=lightarray[i][j]+1;
             }
         }
     }
@@ -114,7 +134,10 @@ public class Day6 {
     public static void turn_off(int xl, int yl,int xu, int yu) {
         for (int i = xl; i <= xu; i++) {
             for (int j = yl; j <= yu; j++) {
-                lightarray[i][j]=false;
+                if (lightarray[i][j]>0) {
+                    lightarray[i][j]=lightarray[i][j]-1;
+                }else lightarray[i][j]=0;
+
             }
         }
     }
@@ -123,11 +146,7 @@ public class Day6 {
 
         for (int i = xl; i <= xu; i++) {
             for (int j = yl; j <= yu; j++) {
-                if (lightarray[i][j]==true){
-                    lightarray[i][j]=false;
-                }else if (lightarray[i][j]==false){
-                    lightarray[i][j]=true;
-                }
+                lightarray[i][j]=lightarray[i][j]+2;
             }
         }
     }
@@ -160,9 +179,8 @@ public class Day6 {
 
         for (int i = 0; i < 1000; i++) {
             for (int j = 0; j < 1000; j++) {
-                if (lightarray[i][j]==true){
-                    cntres++;
-                }
+                cntres=cntres+lightarray[i][j];
+
             }
         }
         System.out.println(cntres);
