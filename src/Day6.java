@@ -98,22 +98,22 @@ public class Day6 {
             }
         }
 
-        temp[cnt]=tempnum+(temp1.charAt(0)-48)*factor;
+        temp[cnt]=tempnum+(temp2.charAt(0)-48)*factor;
 
         return temp;
     }
 
     public static void turn_on(int xl, int yl,int xu, int yu) {
-        for (int i = xu; i < xl; i++) {
-            for (int j = yl; j < yu; j++) {
+        for (int i = xl; i <= xu; i++) {
+            for (int j = yl; j <= yu; j++) {
                 lightarray[i][j]=true;
             }
         }
     }
 
     public static void turn_off(int xl, int yl,int xu, int yu) {
-        for (int i = xu; i < xl; i++) {
-            for (int j = yl; j < yu; j++) {
+        for (int i = xl; i <= xu; i++) {
+            for (int j = yl; j <= yu; j++) {
                 lightarray[i][j]=false;
             }
         }
@@ -121,8 +121,8 @@ public class Day6 {
 
     public static void swap(int xl, int yl, int xu, int yu) {
 
-        for (int i = xl; i < xu; i++) {
-            for (int j = yl; j < yu; j++) {
+        for (int i = xl; i <= xu; i++) {
+            for (int j = yl; j <= yu; j++) {
                 if (lightarray[i][j]==true){
                     lightarray[i][j]=false;
                 }else if (lightarray[i][j]==false){
@@ -151,8 +151,9 @@ public class Day6 {
                 swap(lower_borderx,lower_bordery,upper_borderx,upper_bordery);
             }else if (command.equals("on")){
                 turn_on(lower_borderx,lower_bordery,upper_borderx,upper_bordery);
-            }else if (command.equals("off")){}
-            turn_off(lower_borderx,lower_bordery,upper_borderx,upper_bordery);
+            }else if(command.equals("off")){
+                turn_off(lower_borderx,lower_bordery,upper_borderx,upper_bordery);
+            }
         }
 
         int cntres=0;
