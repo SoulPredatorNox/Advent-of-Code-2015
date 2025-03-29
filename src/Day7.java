@@ -3,7 +3,9 @@ Day 7: Some Assembly Required ---
 
 This year, Santa brought little Bobby Tables a set of wires and bitwise logic gates! Unfortunately, little Bobby is a little under the recommended age range, and he needs help assembling the circuit.
 
-Each wire has an identifier (some lowercase letters) and can carry a 16-bit signal (a number from 0 to 65535). A signal is provided to each wire by a gate, another wire, or some specific value. Each wire can only get a signal from one source, but can provide its signal to multiple destinations. A gate provides no signal until all of its inputs have a signal.
+Each wire has an identifier (some lowercase letters) and can carry a 16-bit signal (a number from 0 to 65535).
+A signal is provided to each wire by a gate, another wire, or some specific value. Each wire can only get a signal from one source, but can provide its signal to multiple destinations.
+A gate provides no signal until all of its inputs have a signal.
 
 The included instructions booklet describes how to connect the parts together: x AND y -> z means to connect wires x and y to an AND gate, and then connect its output to wire z.
 
@@ -47,8 +49,48 @@ public class Day7 {
 
     static Scanner in;
 
+    public static int tobinary (int a) {
+        int temp=0;
+
+        return temp;
+    }
+    public static int todec (int a) {
+        int temp=0;
+
+        return temp;
+    }
+
+    public static int and (int a, int b) {
+        int temp=0;
+
+        return temp;
+    }
+    public static int or (int a, int b) {
+        int temp=0;
+
+        return temp;
+    }
+    public static int not (int a, int b) {
+        int temp=0;
+
+        return temp;
+    }
+    public static int lshift (int a, int b) {
+        int temp=0;
+
+        return temp;
+    }
+    public static int rshift (int a, int b) {
+        int temp=0;
+
+        return temp;
+    }
+
     public static void main(String[] args) throws FileNotFoundException {
         in = new Scanner(new FileReader("input/Day7"));
+
+
+
 
     }
 }
