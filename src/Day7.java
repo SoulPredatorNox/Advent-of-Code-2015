@@ -60,8 +60,11 @@ public class Day7 {
         return temp;
     }
 
+
     public static int and (int a, int b) {
         int temp=0;
+
+
 
         return temp;
     }
